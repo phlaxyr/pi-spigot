@@ -1,4 +1,11 @@
 apply plugin: 'java'
+apply plugin: 'application'
+
+startScripts.enabled = false
+run.enabled = false
+
+createScript(project, 'pi.main.BenchmarkPolynomialSpeed', 'benchmarkScript', 'benchmark')
+
 
 repositories {
     jcenter()
@@ -18,4 +25,33 @@ test {
     	showStandardStreams = true
         exceptionFormat = 'full'
     }
+}
+
+// create run script
+def createScript(project, mainClass, name, nameRun) {
+  project.tasks.create(name: name, type: CreateStartScripts) {
+    outputDir       = new File(project.buildDir, 'scripts')
+    mainClassName   = mainClass
+    applicationName = name
+    classpath       = project.tasks[JavaPlugin.JAR_TASK_NAME].outputs.files + project.configurations.runtime
+  }
+  
+  
+  project.tasks.create(name: nameRun, type: JavaExec) {
+	  classpath = sourceSets.main.runtimeClasspath
+	
+	  main = mainClass
+	  
+  }
+  
+  
+  project.tasks[nameRun].group = 'run'
+  project.tasks[name].dependsOn(project.jar)
+
+  project.applicationDistribution.with {
+    into("bin") {
+      from(project.tasks[name])
+      fileMode = 0755
+    }
+  }
 }
