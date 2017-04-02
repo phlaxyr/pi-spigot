@@ -41,7 +41,7 @@ def createScript(project, mainClass, name, nameRun) {
 	  classpath = sourceSets.main.runtimeClasspath
 	
 	  main = mainClass
-	  
+	  jvmArgs = ['-Xmx512M']
   }
   
   
