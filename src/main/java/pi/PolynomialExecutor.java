@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class PolynomialExecutor {
 	public static double getValueForPoly(int a, int b, int c, int d, int e, int f, int g, int h, int base) {
 
-		final int iters = 5;
+		final int iters = 10;
 		
 		double total = 0;
 		for (int k = 0; k < iters; k++) {
@@ -24,4 +24,6 @@ public class PolynomialExecutor {
 		return total;
 
 	}
+	
+	
 }

@@ -7,7 +7,7 @@ import pi.PolynomialExecutor;
 public class BenchmarkPolynomialSpeed {
 	public static void main(String[] args) {
 
-		final int trials = 50_000_000;
+		final int trials = 5_000_000;
 		final int outertrials = 7;
 
 		System.out.println("Benchmarking polynomial speed with " + trials + " trials for " + (outertrials - 2) + " iterations");
