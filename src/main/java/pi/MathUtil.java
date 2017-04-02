@@ -36,4 +36,5 @@ public class MathUtil {
 				throw new IllegalArgumentException();
 		}
 	}
+	
 }
